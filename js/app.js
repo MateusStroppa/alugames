@@ -7,20 +7,27 @@ function alterarStatus(id){
     let nomeJogo = gameClicado.querySelector('.dashboard__item__name');
     console.log(nomeJogo.textContent);
 
-//Parte que valida a imagem do jogo 
-    if(imagem.classList.contains('dashboard__item__img--rented')){
-        imagem.classList.remove('dashboard__item__img--rented');
+
+
+    //Valida se o jogo está alugado ou não, antes de alterar o status 
+    if(imagem.classList.contains('dashboard__item__img--rented') && botao.classList.contains('dashboard__item__button--return')){
+        //Caso o jogo esteja alugado, confirma se o usuário quer devolvê-lo
+        validacao = prompt(`Devolver o jogo ${nomeJogo.textContent}?`)
+        if(validacao == 'sim' || validacao == 'Sim' || validacao == 'SIM'){
+            imagem.classList.remove('dashboard__item__img--rented');
+            botao.classList.remove('dashboard__item__button--return');
+            botao.innerHTML = 'Alugar';
+        }
     }else{
         imagem.classList.add('dashboard__item__img--rented');
-    }
-
-//Parte que valida o botão do jogo
-    if(botao.classList.contains('dashboard__item__button--return')){
-        botao.classList.remove('dashboard__item__button--return');
-        botao.innerHTML = 'Alugar';
-    }else{
         botao.classList.add('dashboard__item__button--return');
         botao.innerHTML = 'Devolver';
     }
+}
 
+//Função para confirmar se o usuário quer devolver o jogo
+function validarDevolucao(){
+
+
+    
 }
